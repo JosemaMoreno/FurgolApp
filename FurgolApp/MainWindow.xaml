@@ -1,0 +1,56 @@
+﻿<Window x:Class="FurgolApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurgolApp"
+        mc:Ignorable="d"
+        Title="FurgolApp" 
+        Height="810" 
+        Width="550"  
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+    >
+    <!-- Contenedor principal -->
+    <StackPanel>
+        <!-- Fondo del StackPanel -->
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/img/background.png"                        
+                        Stretch="UniformToFill"/>
+        </StackPanel.Background>
+
+        <!-- Imagen del logo -->
+        <Image Source="/img/logo.png" 
+                Width="500" 
+                Height="500"/>
+        
+        <!-- TextBlock para "Administrar Jugadores" con estilo Hover -->
+        <TextBlock Text="Administrar Jugadores"
+                    Style="{StaticResource Hover}"
+                    Width="350"
+                    Margin="3" 
+                    MouseLeftButtonDown="Ventana_Jugadores_Click"/>
+
+        <!-- TextBlock para "Administrar Equipos" con estilo Hover -->
+        <TextBlock Text="Administrar Equipos" 
+                    Style="{StaticResource Hover}"
+                    Width="350"
+                    Margin="3" 
+                    MouseLeftButtonDown="Ventana_Equipos_Click"/>
+
+        <!-- TextBlock para "Acerca de" con estilo Hover -->
+        <TextBlock Text="Acerca de" 
+                    Style="{StaticResource Hover}"
+                    Width="350"
+                    Margin="30" 
+                    MouseLeftButtonDown="Acerca_de_Click"/>
+
+        <!-- TextBlock para "Salir" con estilo Hover -->
+        <TextBlock Text="Salir" 
+                    Style="{StaticResource Hover}"
+                    Width="350"
+                    Margin="3"   
+                    MouseLeftButtonDown="Salir_Click"/>
+    </StackPanel>
+</Window>

@@ -1,0 +1,146 @@
+﻿<Window x:Class="FurgolApp.Ventana_Jugadores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurgolApp"
+        mc:Ignorable="d"
+        Title="FurgolApp" 
+        Height="810" 
+        Width="550"  
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None">
+
+    <!-- Contenedor principal -->
+    <StackPanel>
+
+        <!-- Fondo del StackPanel -->
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/img/background.png"                        
+                    Stretch="UniformToFill"/>
+        </StackPanel.Background>
+
+        <!-- Botón "Volver" con estilo Hover -->
+        <TextBlock Text="Volver" 
+                    Style="{StaticResource Hover}" 
+                    HorizontalAlignment="Left"
+                    Width="100"
+                    Margin="20 50 0 30" 
+                    MouseLeftButtonDown="Volver_Click"/>
+
+        <!-- Grid para organizar elementos -->
+        <Grid>
+            <!-- Disposición de las columnas -->
+            <Grid.ColumnDefinitions>                
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Disposición de las filas -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+
+            <!-- StackPanel para los TextBlock -->
+            <StackPanel Grid.Column="0" 
+                        Margin="20 20 0 0">
+                <TextBlock Tag="info"
+                            Text="Nombre:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Apellidos:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Apodo:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Edad:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Dorsal:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Nacionalidad:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+                <TextBlock Tag="info"
+                            Text="Equipo:"
+                            Style="{StaticResource EstiloTextoDerecha}"/>
+            </StackPanel>
+
+            <!-- StackPanel para los TextBlock de la información -->
+            <StackPanel Grid.Column="1" 
+                        Margin="0 20 0 20">
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoNombre" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Nombre}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoApellidos" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Apellidos}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoApodo" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Apodo}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoEdad" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Edad}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoDorsal" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Dorsal}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoNacionalidad" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Nacionalidad}"/>
+                <TextBlock Style="{StaticResource EstiloTextoIzquierda}"
+                            x:Name="campoEquipo" 
+                            Text="{Binding ElementName=vistaJugadores, Path=SelectedItem.Equipo}"/>
+            </StackPanel>
+            
+            <!-- Imagen con UserControl -->
+            <local:PersonalImage ImagenPredeterminada="./img/jugador.png"
+                                 Imagen="{Binding ElementName=vistaJugadores, 
+                                                  Path=SelectedItem.Imagen}"
+                                 Grid.Column="2"/>
+
+            <!-- StackPanel que contiene los cuatro botones (Crear, editar, asignar equipo y borrar) -->
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"
+                        Margin="20 0 0 0">
+                
+                <!-- Boton Crear -->
+                <Border Style="{StaticResource EstiloBotonCuadrado}"
+                        MouseLeftButtonDown="Crear_Click">
+                    <Image Source="/img/icons/crear_jugador.png"/>
+                </Border>
+
+                <!-- Boton Editar -->
+                <Border Style="{StaticResource EstiloBotonCuadradoBlockJugadores}"
+                        MouseLeftButtonDown="Modificar_Click">
+                    <Image Source="/img/icons/modificar_jugador.png"/>
+                </Border>
+
+                <!-- Boton Asignar Equipo -->
+                <Border Style="{StaticResource EstiloBotonCuadradoBlockJugadores}"
+                        MouseLeftButtonDown="jugadorClub_Click"
+                        Width="100">
+                    <Image Source="/img/icons/jugador_club.png"                                                              
+                            VerticalAlignment="Bottom"/>
+                </Border>
+
+                <!-- Boton Borrar -->
+                <Border Style="{StaticResource EstiloBotonCuadradoBlockJugadores}"
+                        MouseLeftButtonDown="Borrar_Click">
+                    <Image Source="/img/icons/borrar_jugador.png"/>
+                </Border>
+            </StackPanel>
+
+            <!-- ListBox que contendrá los jugadores existentes -->
+            <ListBox x:Name="vistaJugadores"
+                        Grid.Row="2" 
+                        Grid.ColumnSpan="3"
+                        DisplayMemberPath="Apellidos"/>
+        </Grid>
+    </StackPanel>
+</Window>
